@@ -37,7 +37,10 @@ const Signup = () => {
         setEmail('')
         setPassword('')
         setUsername('')
-        navigate('/login');
+        setTimeout(() => {
+          navigate('/login');
+        }, 3000);
+        
       }
       if (error) {
         toast.error(error);
@@ -53,7 +56,7 @@ const Signup = () => {
     const handleClick = (e) => {
       e.preventDefault();
       setModal(!modal);
-      navigate(-1);
+      navigate('/');
     };
   return (
     <div className='sign-up'>
