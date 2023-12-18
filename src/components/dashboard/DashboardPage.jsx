@@ -29,7 +29,7 @@ const DashboardPage = () => {
         </div>
         <div className="grid-right">
           {data?.data?.posts?.map((data) => (
-            <ListPost key={data._id} title={data.title} content={data.content} id={data._id} likes={data.likes} />
+            <ListPost author={data.author.username} key={data._id} title={data.title} content={data.content} comment={data.comments} id={data._id} likes={data.likes} />
           ))}
           <div style={{ textAlign: 'center' }}>{loading && <div>Loading......</div>}</div>
         </div>

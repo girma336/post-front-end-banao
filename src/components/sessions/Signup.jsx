@@ -126,7 +126,7 @@ const Signup = () => {
                   </div>
                 </div>
                 <div className='image-modal'>
-                   <p className='image-header-modal'>Already have an account? <span>Sign In</span></p>
+                   <p className='image-header-modal'>Already have an account? <span onClick={() => navigate('/login')}>Sign In</span></p>
                    <div className="image__contener-div">
                      <Image src={leftImage} />
                    </div>

@@ -1,0 +1,118 @@
+.home-bg {
+  margin-top: 72px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.6) 100%);
+  background-image:  url('./../../assets/backdesk.png'), url('./../../assets/computer1.png');
+  background-size: cover, cover;
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
+  height: 89vh;
+  z-index: 0;
+
+  position: relative;
+}
+
+.computer-home {
+    margin-left: 13.89%;
+    float: left;
+    margin-top: 300px;
+    opacity: 1;
+    z-index: 100;
+    color: #ffffff;
+    text-align: left;
+    /* border: 1px solid white; */
+}
+
+.computer-home h1 {
+    font-size: 36px;
+    line-height: 46.8px;
+    font-weight: 700;
+}
+
+.computer-home {
+    font-size: 18px;
+    line-height: 23.4px;
+    font-weight: 400;
+}
+
+
+.join-group  {
+    display: none;
+}
+
+@media (max-width: 920px) {
+  .container {
+    padding: 0 10px;
+  }
+
+  .fixed-position {
+    display: none;
+  }
+
+  .computer-home {
+    margin-left: 8%;
+  }
+
+  .home-bg {
+    margin-top: 24px;
+    opacity: 1;
+    background-size: cover;
+  }
+
+  .join-group {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    position: absolute;
+    top: 20px;
+    margin-left: 1%;
+    z-index: 1000;
+  }
+
+  .computer-home h1 {
+        font-size: 28px;
+        line-height: 36.8px;
+        font-weight: 700;
+    }
+
+    .computer-home p {
+        font-size: 16px;
+        line-height: 12.6px;
+        font-weight: 400;
+    }
+}
+
+@media (max-width: 668px) {
+    .computer-home {
+        margin-left: 16px;
+    }
+
+    .join-group {
+        margin-left: -1%;
+    }
+    
+    .home-bg {
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.6) 100%);
+        background-image: url('./../../assets/mobBlack.png'), url('./../../assets/mobil-comp.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 236px;
+        width: 100%;
+    }
+
+    .computer-home {
+        margin-top: 180.27px;
+    }
+
+    .computer-home h1 {
+        font-size: 17px;
+        line-height: 22.8px;
+        font-weight: 700;
+    }
+
+    .computer-home p {
+        font-size: 12px;
+        line-height: 15.6px;
+        font-weight: 400;
+    }
+}

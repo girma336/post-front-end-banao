@@ -1,4 +1,3 @@
-// authSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
@@ -7,14 +6,14 @@ const initialState = {
   data: [],
   error: null,
   loading: false,
-  successMessage: null, // Add successMessage field
+  successMessage: null, 
 };
 
 export const createPost = createAsyncThunk('post/create', async (postData) => {
   try {
-    const token = localStorage.getItem('authToken'); // Retrieve the token from localStorage
+    const token = localStorage.getItem('authToken'); 
     const headers = {
-      Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+      Authorization: `Bearer ${token}`, 
     };
 
     const response = await axios.post(`${BASE_URL}/`, postData, { headers });
@@ -26,9 +25,9 @@ export const createPost = createAsyncThunk('post/create', async (postData) => {
 
 export const getPosts = createAsyncThunk('posts/get', async () => {
   try {
-    const token = localStorage.getItem('authToken'); // Retrieve the token from localStorage
+    const token = localStorage.getItem('authToken'); 
     const headers = {
-      Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+      Authorization: `Bearer ${token}`, 
     };
     const response = await axios.get(`${BASE_URL}/`, { headers });
     return response.data;
@@ -37,11 +36,24 @@ export const getPosts = createAsyncThunk('posts/get', async () => {
   }
 });
 
+export const getPostById = createAsyncThunk('post/getbyid', async (postId) => {
+  try {
+    const token = localStorage.getItem('authToken'); 
+    const headers = {
+      Authorization: `Bearer ${token}`, 
+    };
+    const response = await axios.get(`${BASE_URL}/${postId}`, { headers });
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+});
+
 export const deletePost = createAsyncThunk('post/delete', async (postId) => {
   try {
-    const token = localStorage.getItem('authToken'); // Retrieve the token from localStorage
+    const token = localStorage.getItem('authToken'); 
     const headers = {
-      Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+      Authorization: `Bearer ${token}`, 
     };
     const response = await axios.delete(`${BASE_URL}/${postId}`, { headers });
     return response.data;
@@ -50,13 +62,27 @@ export const deletePost = createAsyncThunk('post/delete', async (postId) => {
   }
 });
 
-export const likesPost = createAsyncThunk('post/likes', async (postId) => {
+export const likesPost = createAsyncThunk('post/like', async (postId) => {
   try {
-    const token = localStorage.getItem('authToken'); // Retrieve the token from localStorage
+    const token = localStorage.getItem('authToken'); 
     const headers = {
-      Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+      Authorization: `Bearer ${token}`, 
     };
-    const response = await axios.post(`${BASE_URL}/${postId}/likes`, { headers });
+    const response = await axios.post(`${BASE_URL}/${postId}/likes`, {}, { headers });
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+});
+
+export const commentPost = createAsyncThunk('post/comment', async (data) => {
+  try {
+    const token = localStorage.getItem('authToken'); 
+    const headers = {
+      Authorization: `Bearer ${token}`, 
+    };
+    const text = data.text;
+    const response = await axios.post(`${BASE_URL}/${data.id}/comment`, { text }, { headers });
     return response.data;
   } catch (error) {
     throw new Error(error.response.data.message);
@@ -71,7 +97,7 @@ const postSlice = createSlice({
     clearError: (state) => {
       state.error = null;
     },
-    clearSuccessMessage: (state) => { // Add reducer to clear success message
+    clearSuccessMessage: (state) => { 
       state.successMessage = null;
     },
   },
@@ -84,7 +110,7 @@ const postSlice = createSlice({
         state.loading = false;
         state.data = action.payload;
         state.error = null;
-        state.successMessage = 'Post Create successful!'; // Set success message
+        state.successMessage = 'Post Create successful!'; 
       })
       .addCase(createPost.rejected, (state, action) => {
         state.loading = false;
@@ -96,10 +122,21 @@ const postSlice = createSlice({
       .addCase(getPosts.fulfilled, (state, action) => {
         state.loading = false;
         state.data = action.payload;
-        // state.successMessage = 'User Login successful!';
         state.error = null;
       })
       .addCase(getPosts.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(getPostById.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getPostById.fulfilled, (state, action) => {
+        state.loading = false;
+        state.data = action.payload;
+        state.error = null;
+      })
+      .addCase(getPostById.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       })
@@ -121,11 +158,24 @@ const postSlice = createSlice({
       })
       .addCase(likesPost.fulfilled, (state, action) => {
         state.loading = false;
-        // state.data = action.payload;
+        state.data = action.payload;
         state.successMessage = 'Liked successful!';
         state.error = null;
       })
       .addCase(likesPost.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(commentPost.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(commentPost.fulfilled, (state, action) => {
+        state.loading = false;
+        state.data = action.payload;
+        state.successMessage = 'Commented successful!';
+        state.error = null;
+      })
+      .addCase(commentPost.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       });

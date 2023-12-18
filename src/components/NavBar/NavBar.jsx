@@ -10,11 +10,10 @@ import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
+const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 const NavBar = () => {
   const [toggle, setToggle] = useState(false);
-  const [sessionIn, setSessionIn] = useState(false);
-  const [sessionUp, setSessionUp] = useState(false);
+
   const navigate = useNavigate()
   const isAuthenticate = authenticated()
   const handleSinupandIn = () => {
@@ -23,20 +22,16 @@ const NavBar = () => {
 
   const handleSessionSignup = () => {
     navigate('/signup')
-    setSessionUp(true)
     setToggle(false)
   }
 
   const handleSessionLogin = () => {
     navigate('/login')
-    setToggle(false)
-    setSessionIn(true)
-    setToggle(false)
   }
 
   const handleSessionSignout = () => {
     localStorage.removeItem('authToken');
-    
+    localStorage.removeItem('currentUser');
     setToggle(false)
     toast.success('Signout Successfly')
     setTimeout(() => {
@@ -61,8 +56,14 @@ const NavBar = () => {
         </div>
         <div>
           <p className="create-account">
-            Create Account.
-            <span className="create-account-span">It`s free</span>
+          {currentUser ? (
+              <span className="create-account-span">{currentUser.email}</span>
+            ) : (
+              <>
+                Create Account.
+                <span className="create-account-span">It's free</span>
+              </>
+            )}
             <MdOutlineArrowDropDown className='down-icon' onClick={() => handleSinupandIn()}/>
           </p>
 

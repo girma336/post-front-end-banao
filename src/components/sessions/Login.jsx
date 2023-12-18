@@ -7,7 +7,7 @@ import faceBook from './../../assets/facebook.png'
 import google from './../../assets/google.png';
 import './Login.css';
 import eye from './../../assets/eye.png';
-import { clearSuccessMessage, login } from '../../redux/session/sessionSlice';
+import { clearError, clearSuccessMessage, login } from '../../redux/session/sessionSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
@@ -27,7 +27,8 @@ const Login = () => {
   
   useEffect(() => {
     return () => {
-      dispatch(clearSuccessMessage()); 
+      dispatch(clearSuccessMessage());
+      dispatch(clearError());
     };
   }, [dispatch]);
 
@@ -48,7 +49,6 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-
     dispatch(login({ username, password }));
   };
 
@@ -116,11 +116,11 @@ const Login = () => {
                    </div>
                   </div>
                   <div className="forget">
-                    <p className="forget-text">Forgot Password?</p>
+                    <p onClick={() => navigate('/forgot-password')} className="forget-text">Forgot Password?</p>
                   </div>
                 </div>
                 <div className='image-modal'>
-                   <p className='image-header-modal'>Don’t have an account yet? <span>Create new for free!</span></p>
+                   <p className='image-header-modal'>Don’t have an account yet? <span onClick={() => navigate('/signup')}>Create new for free!</span></p>
                    <div className="image__contener-div">
                      <Image src={leftImage} />
                    </div>

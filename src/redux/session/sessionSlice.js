@@ -22,7 +22,30 @@ export const signup = createAsyncThunk('auth/signup', async (userData) => {
 export const login = createAsyncThunk('auth/login', async (userData) => {
   try {
     const response = await axios.post(`${BASE_URL}/login`, userData);
-    localStorage.setItem('authToken', response.data.token)
+    localStorage.setItem('authToken', response.data.token);
+    localStorage.setItem('currentUser', JSON.stringify(response.data.user));
+    console.log(response.data)
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+});
+
+export const forgot = createAsyncThunk('auth/forgot', async (userData) => {
+  try {
+    const response = await axios.post(`${BASE_URL}/forgetPassword`, userData);
+    localStorage.setItem('resetToken', response.data.resetToken);
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+});
+
+export const reset = createAsyncThunk('auth/reset', async (userData) => {
+  try {
+    const password = userData.password
+    const response = await axios.post(`${BASE_URL}/resetPassword/${userData.resetId}`, {password});
+    console.log(response.data)
     return response.data;
   } catch (error) {
     throw new Error(error.response.data.message);
@@ -65,6 +88,32 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(login.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(forgot.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(forgot.fulfilled, (state, action) => {
+        state.loading = false;
+        state.token = action.payload.token;
+        state.error = null;
+        state.successMessage = 'Forgot sent successful!'; // Set success message
+      })
+      .addCase(forgot.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(reset.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(reset.fulfilled, (state, action) => {
+        state.loading = false;
+        // state.token = action.payload;
+        state.successMessage = 'Password reset successful!';
+        state.error = null;
+      })
+      .addCase(reset.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       });
