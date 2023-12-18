@@ -1,0 +1,208 @@
+.sign-up {
+    position: fixed;
+    inset: 0;
+    background-color: hsla(0, 0%, 0%, 0.7);
+    z-index: 10000000000000;
+    display: grid;
+    place-items: center;
+  }
+  
+  .sign-in-modal {
+      background-color: #ffffff;
+      max-width: 736px;
+      width: 90%;
+      border-radius: 8px;
+      position: relative;
+      height: 457px;
+      z-index: 10000000000000;
+  }
+  
+  .modal__close {
+    position: absolute;
+    top: -7%;
+    right: -2%;
+    width: 24px;
+    height: 24px;
+    z-index: 100000000000000;
+  }
+  
+  .header-modal {
+      background-color:#EFFFF4;
+      height: 50px;
+      max-width: 736px;
+      width: 100%;
+      border-top-right-radius: 8px;
+      border-top-left-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+
+  .pass-show {
+    position: absolute;
+    top: 15px;
+    right: 10px;
+  }
+  
+  .header-modal-title {
+      color: #008A45;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 16px;
+      text-align: center;
+      padding-top: 15px;
+  }
+  
+  
+  .grid-modla {
+      display: grid;
+      grid-template-columns: repeat(2, 320px);
+      gap: 30px;
+  }
+  
+  .create-accounts {
+      margin: 20px 20px 30px 35px;
+      display: grid;
+      grid-template-columns: 1fr;
+      row-gap: 15px;
+  
+  }
+  
+  .create-account-title {
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 31.2px;
+      color: #000000;
+      float: left;
+      text-align: left;
+  }
+  
+  .form__input-group {
+      display: grid;
+      grid-template-columns: 320px;
+  }
+  
+  .name__group {
+      width: 320px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+  }
+  .form__input-div {
+      width: 320px;
+      position: relative;
+  }
+  
+  .form__input-divs {
+      width: 160px;
+  }
+  
+  .form__control {
+    border: 0.5px solid #D9D9DB;
+    background-color: #F7F8FA;
+    color: #8A8A8A;
+    width: 100%;
+    padding: 10px 20px 10px 8px;
+    font-size: 15px;
+    /* transition: all 0.3s ease; */
+    font-family: 'IBM Plex Sans', sans-serif;
+  }
+  
+  .form__control:focus {
+      border: 0.5px solid #D9D9DB;
+  }
+  
+  .button-create {
+      background-color: #2F6CE5;
+      color: #FFFFFF;
+      font-size: 14px;
+      line-height: 16px;
+      font-weight: 600;
+      border-radius: 20px;
+      width: 320px;
+      padding: 12px;
+      font-family: 'IBM Plex Sans', sans-serif;
+      margin-top: 15px;
+      border: none;
+  }
+
+  .textarea {
+    resize: none;
+    height: 160px;
+  }
+  
+  .face-google {
+      background-color: #D9D9DB;
+      height: 38px;
+      width: 320px;
+      margin-top: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  
+  .facebook {
+      font-size: 14px;
+      line-height: 16px;
+      font-weight: 400;
+      font-family: 'IBM Plex Sans', sans-serif;
+      text-align: center;
+      /* padding-top: 20px; */
+  }
+  
+  .image-modal {
+      margin: 20px 20px 30px 35px;
+      display: grid;
+      grid-template-columns: 1fr;
+      row-gap: 20px;
+  }
+  
+  .image-header-modal {
+      color: linear-gradient(0deg, #3D3D3D, #3D3D3D);
+      font-size: 13px;
+      line-height: 16.9px;
+      font-weight: 600;
+      font-family: 'IBM Plex Sans', sans-serif;
+      text-align: right;
+      float: left;
+  }
+  
+  .image-header-modal span{
+      color: #2F6CE5;
+      font-size: 14px;
+      line-height: 18.2px;
+      font-weight: 600;
+      font-family: 'IBM Plex Sans', sans-serif;
+  
+  }
+  
+  .image__contener-div {
+      width: 320px;
+      height: 340px;
+      bottom: 1px solid red;
+  }
+  
+  .image-foot {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: -0.008em;
+    text-align: right;
+    margin-top: 2px;
+  }
+
+.forget-text {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: -0.008em;
+  text-align: center;
+}
+
+.custom-error-toast {
+  background-color: red;
+  color: white; 
+}

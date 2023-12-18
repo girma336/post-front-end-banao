@@ -1,0 +1,141 @@
+.fixed-position {
+    position: fixed;
+    width: 100%;
+    background-color: #fff;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+}
+
+.containers {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 72px;
+    background-color: #fff;
+    width: 100%;
+
+}
+
+.logo {
+    width: 165px;
+    height: 25px;
+    margin-left: 50px;
+}
+
+.search-bar {
+    border-radius: 21px;
+    background-color: #F2F2F2;
+    height: 42px;
+    width: 360px;
+    display: flex;
+    align-items: center;
+}
+
+.search-icon {
+    font-size: 25px;
+    color: #999;
+    margin-left: 10px;
+    background-color: #F2F2F2;
+    cursor: pointer;
+}
+
+/* Styles for the input element */
+input {
+    border: none;
+    background-color: #F2F2F2;
+    padding: 5px 12px;
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+/* Styles for the input element on focus */
+input:focus {
+    outline: none;
+    border: none;
+}
+
+/* Placeholder text styling */
+input::placeholder {
+    color: #999;
+}
+
+.create-account {
+    margin-top: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #2e2e2e;
+    line-height: 20.8px;
+    margin-right: 72px;
+}
+
+.create-account-span {
+    color: #2f6ce5;
+}
+
+.down-icon {
+    font-size: 24px;
+    color: #2e2e2e;
+}
+
+.mobile-header {
+    display: none;
+}
+
+.toogle-btn {
+    position: fixed;
+    top: 50px;
+    right: 5%;
+    width: 80px;
+    height: 70px;
+    background-color: #ffffff;
+    z-index: 20000000000;
+    box-shadow: 2px 3px 4px 4px #cccccc;
+    box-sizing: border-box;
+    border-radius: 8px;
+}
+.sign-out {
+    height: 40px;
+}
+
+.signin-up {
+    cursor: pointer;
+    margin-top: 10px;
+}
+.toggle-flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+@media (max-width: 920px) {
+  .container {
+    padding: 0 10px;
+  }
+
+  .fixed-position {
+    display: none;
+  }
+  .mobile-header {
+    display: flex;
+    position: fixed;
+    width: 100%;
+    background-color: #fff;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+  }
+
+  .header {
+    position: relative;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    height: 24px;
+    background-color: #fff;
+    width: 100%;
+    margin-right: 30px;
+  }
+}

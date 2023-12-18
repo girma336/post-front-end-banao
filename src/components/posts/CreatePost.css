@@ -1,0 +1,105 @@
+.create-post {
+  position: fixed;
+  inset: 0;
+  background-color: hsla(0, 0%, 0%, 0.7);
+  z-index: 10000000000000;
+  display: grid;
+  place-items: center;
+}
+
+.create-post-modal {
+    background-color: #ffffff;
+    max-width: 500px;
+    width: 90%;
+    border-radius: 8px;
+    position: relative;
+    height: 420px;
+    z-index: 10000000000000;
+}
+
+.modal__close {
+  position: absolute;
+  top: -7%;
+  right: -2%;
+  width: 24px;
+  height: 24px;
+  z-index: 100000000000000;
+}
+
+
+.grid-modal {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.create-accounts {
+    margin: 20px 20px 30px 35px;
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 15px;
+}
+
+.create-account-title {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 31.2px;
+    color: #000000;
+    float: left;
+    text-align: center;
+}
+
+.form__input-group {
+    display: grid;
+    grid-template-columns: 1fr;
+
+}
+
+.form__input-div {
+    width: 90%;
+
+}
+
+.form__control {
+  border: 0.5px solid #D9D9DB;
+  background-color: #F7F8FA;
+  color: #8A8A8A;
+  width: 100%;
+  padding: 10px 24px 10px 12px;
+  font-size: 15px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  /* margin-left: -10px; */
+  margin-left: 0;
+}
+
+.form__control:focus {
+    border: 0.5px solid #D9D9DB;
+}
+
+.button-create-post {
+    background-color: #2F6CE5;
+    color: #FFFFFF;
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 600;
+    border-radius: 20px;
+    width: 95%;
+    padding: 12px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    margin-top: 15px;
+    border: none;
+}
+
+.textarea {
+  resize: none;
+  height: 160px;
+}
+
+.textarea:focus {
+    border: 0.5px solid #D9D9DB;
+}
