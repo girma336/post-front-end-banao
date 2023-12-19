@@ -35,13 +35,12 @@ const ForgotPassword = () => {
       }
     }, [successMessage, error, navigate]);
     const handleContentChange = (e) => {
-        setEmail(e.target.value); // Update the content state with the new value
+        setEmail(e.target.value); 
       };
     const handleSignup = (e) => {
       e.preventDefault();
   
       dispatch(forgot({email}));
-    //   navigate('/reset-password')
     };
 
     const handleClick = (e) => {

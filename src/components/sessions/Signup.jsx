@@ -7,7 +7,7 @@ import {Image} from 'react-bootstrap';
 import faceBook from './../../assets/facebook.png'
 import google from './../../assets/google.png';
 import eye from './../../assets/eye.png';
-import { clearSuccessMessage, signup } from '../../redux/session/sessionSlice';
+import { clearSuccessMessage, signup, clearError } from '../../redux/session/sessionSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
@@ -28,6 +28,7 @@ const Signup = () => {
     useEffect(() => {
       return () => {
         dispatch(clearSuccessMessage()); 
+        dispatch(clearError())
       };
     }, [dispatch]);
   
@@ -37,15 +38,16 @@ const Signup = () => {
         setEmail('')
         setPassword('')
         setUsername('')
+        
         setTimeout(() => {
+          dispatch(clearSuccessMessage()); 
           navigate('/login');
         }, 3000);
-        
       }
       if (error) {
         toast.error(error);
       }
-    }, [successMessage, error, navigate]);
+    }, [successMessage, error, navigate, dispatch]);
 
     const handleSignup = (e) => {
       e.preventDefault();

@@ -70,7 +70,7 @@ const authSlice = createSlice({
       })
       .addCase(signup.fulfilled, (state, action) => {
         state.loading = false;
-        state.token = action.payload.token;
+        // state.token = action.payload.token;
         state.error = null;
         state.successMessage = 'Registration successful!'; // Set success message
       })

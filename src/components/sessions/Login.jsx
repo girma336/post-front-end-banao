@@ -12,7 +12,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 
-const Login = ({setCurrentUser}) => {
+const Login = ({currentUser, setCurrentUser}) => {
   const [modal, setModal] = useState(false);
   const [eyeClick, setEyeClick] = useState(false);
   const [username, setUsername] = useState('');
@@ -33,7 +33,7 @@ const Login = ({setCurrentUser}) => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (successMessage) {
+    if (successMessage && password) {
       toast.success(successMessage); 
       setUsername('');
       setPassword('');
@@ -49,7 +49,7 @@ const Login = ({setCurrentUser}) => {
     if (error) {
       toast.error(error);
     }
-  }, [successMessage, error, navigate, setCurrentUser]);
+  }, [successMessage, error, navigate, setCurrentUser, currentUser, password]);
 
   const handleLogin = (e) => {
     e.preventDefault();
