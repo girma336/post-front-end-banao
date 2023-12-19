@@ -38,7 +38,7 @@ const App = () => {
         <Route path="/reset-password" element={<ResatePassword />} />
         {isAuthenticated && (
           <>
-            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/dashboard" element={<DashboardPage setIsAuthenticated={setIsAuthenticated} setCurrentUser={setCurrentUser} />} />
             <Route path="/create-post" element={<CreatePost />} />
             <Route path="/delete/:id" element={<DeletePost />} />
             <Route path="/likes/:id" element={<Likes />} />
