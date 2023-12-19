@@ -5,21 +5,15 @@ import ListPost from '../posts/ListPost';
 import { getPosts } from '../../redux/session/postSlice';
 import { useNavigate } from 'react-router-dom';
 
-const DashboardPage = ({setIsAuthenticated, setCurrentUser}) => {
+const DashboardPage = () => {
   const dispatch = useDispatch();
   const { loading, data } = useSelector((state) => state.post);
   const navigate = useNavigate();
-  useEffect(() => {
-    const authToken = localStorage.getItem('authToken');
-    const currUser = JSON.parse(localStorage.getItem('currentUser'));
-
-    setIsAuthenticated(!!authToken);
-    setCurrentUser(currUser);
-  }, [setCurrentUser, setIsAuthenticated]);
+ 
   useEffect(() => {
     dispatch(getPosts());
   }, [dispatch]);
-
+ 
   const handlePostModal = () => {
     navigate('/create-post')
     dispatch(getPosts());

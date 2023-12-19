@@ -14,7 +14,6 @@ import 'react-toastify/dist/ReactToastify.css';
 const token = localStorage.getItem('authToken');
 const NavBar = ({setCurrentUser, currentUser}) => {
   const [toggle, setToggle] = useState(false);
-
   const navigate = useNavigate()
   const isAuthenticate = authenticated()
   const handleSinupandIn = () => {
