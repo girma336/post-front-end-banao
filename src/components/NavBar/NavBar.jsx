@@ -10,8 +10,9 @@ import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-const NavBar = () => {
+// const currUser = JSON.parse(localStorage.getItem('currentUser'));
+const token = localStorage.getItem('authToken');
+const NavBar = ({setCurrentUser, currentUser}) => {
   const [toggle, setToggle] = useState(false);
 
   const navigate = useNavigate()
@@ -19,7 +20,7 @@ const NavBar = () => {
   const handleSinupandIn = () => {
     setToggle(!toggle);
   }
-
+  
   const handleSessionSignup = () => {
     navigate('/signup')
     setToggle(false)
@@ -32,11 +33,15 @@ const NavBar = () => {
   const handleSessionSignout = () => {
     localStorage.removeItem('authToken');
     localStorage.removeItem('currentUser');
+    const curser = JSON.parse(localStorage.getItem('currentUser'));
+    setCurrentUser(curser)
     setToggle(false)
     toast.success('Signout Successfly')
     setTimeout(() => {
-      navigate('/login'); // Redirect to the '/dashboard' after 3000 milliseconds (3 seconds)
+      navigate('/');
+      navigate('/'); // Redirect to the '/dashboard' after 3000 milliseconds (3 seconds)
     }, 3000);
+    
   }
   
   return (
@@ -56,7 +61,7 @@ const NavBar = () => {
         </div>
         <div>
           <p className="create-account">
-          {currentUser ? (
+          {currentUser && token ? (
               <span className="create-account-span">{currentUser.email}</span>
             ) : (
               <>

@@ -15,18 +15,21 @@ import ForgotPassword from './components/sessions/ForgotPassword';
 import ResatePassword from './components/sessions/ResatePassword';
 import Home from './components/home/Home';
 
+const authToken = localStorage.getItem('authToken')
+const currUser = JSON.parse(localStorage.getItem('currentUser'));
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [currentUser, setCurrentUser] = useState(currUser)
   useEffect(() => {
-    setIsAuthenticated(!!localStorage.getItem('authToken'))
-  },[])
+    setIsAuthenticated(!!authToken)
+  }, [])
   
   return (
       <BrowserRouter>
-        <NavBar />
+        <NavBar setCurrentUser={setCurrentUser} currentUser={currentUser} />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login setCurrentUser={setCurrentUser} />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<ResatePassword />} />

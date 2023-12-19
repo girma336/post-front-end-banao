@@ -9,6 +9,7 @@ const DashboardPage = () => {
   const dispatch = useDispatch();
   const { loading, data } = useSelector((state) => state.post);
   const navigate = useNavigate();
+ 
   useEffect(() => {
     dispatch(getPosts());
   }, [dispatch]);

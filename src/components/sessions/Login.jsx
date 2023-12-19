@@ -12,7 +12,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
+const Login = ({setCurrentUser}) => {
   const [modal, setModal] = useState(false);
   const [eyeClick, setEyeClick] = useState(false);
   const [username, setUsername] = useState('');
@@ -40,12 +40,16 @@ const Login = () => {
       
       setTimeout(() => {
         navigate('/dashboard'); 
+        navigate('/dashboard');
+        const curser = JSON.parse(localStorage.getItem('currentUser'));
+        setCurrentUser(curser)
       }, 3000);
+      
     }
     if (error) {
       toast.error(error);
     }
-  }, [successMessage, error, navigate]);
+  }, [successMessage, error, navigate, setCurrentUser]);
 
   const handleLogin = (e) => {
     e.preventDefault();

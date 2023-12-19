@@ -2,7 +2,9 @@ import React from 'react'
 import './Home.css';
 import { IoArrowBackOutline } from "react-icons/io5";
 import { Button } from 'react-bootstrap';
+
 const Home = () => {
+
   return (
     <div
       className="container-fluid bg-image home-bg"
