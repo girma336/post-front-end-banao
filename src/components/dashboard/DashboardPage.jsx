@@ -7,15 +7,19 @@ import { useNavigate } from 'react-router-dom';
 
 const DashboardPage = () => {
   const dispatch = useDispatch();
+  const {user} = useSelector((state) => state.auth)
   const { loading, data } = useSelector((state) => state.post);
   const navigate = useNavigate();
-  const authToken = localStorage.getItem('authToken');
-
+  
   useEffect(() => {
-    dispatch(getPosts());
-    navigate('/')
-  }, [dispatch, navigate]);
-
+    if(!user) {
+      navigate('/home');
+    }else {
+      dispatch(getPosts());
+    }
+    
+  }, [dispatch, user, navigate]);
+ 
   const handlePostModal = () => {
     navigate('/create-post')
     dispatch(getPosts());
@@ -23,26 +27,25 @@ const DashboardPage = () => {
 
   return (
     <>
-      {!!authToken && (
+    {user && (
       <div className="container">
-        <h1 className="post-header">Post lists</h1>
-        <div className="grid-posts">
-          <div className="grid-left">
-            <div onClick={handlePostModal} className="create__btn">
-              Create Post
-            </div>
-          </div>
-          <div className="grid-right">
-            {data?.data?.posts?.map((data) => (
-              <ListPost author={data.author.username} key={data._id} title={data.title} content={data.content} comment={data.comments} id={data._id} likes={data.likes} />
-            ))}
-            <div style={{ textAlign: 'center' }}>{loading && <div>Loading......</div>}</div>
+      <h1 className="post-header">Post lists</h1>
+      <div className="grid-posts">
+        <div className="grid-left">
+          <div onClick={handlePostModal} className="create__btn">
+            Create Post
           </div>
         </div>
+        <div className="grid-right">
+          {data?.data?.posts?.map((data) => (
+            <ListPost author={data.author.username} key={data._id} title={data.title} content={data.content} comment={data.comments} id={data._id} likes={data.likes} />
+          ))}
+          <div style={{ textAlign: 'center' }}>{loading && <div>Loading......</div>}</div>
+        </div>
       </div>
-      )}
+    </div>
+    )}
     </>
-
   );
 };
 

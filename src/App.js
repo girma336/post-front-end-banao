@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavBar from './components/NavBar/NavBar';
@@ -14,38 +16,32 @@ import CreateComment from './components/comments/CreateComments';
 import ForgotPassword from './components/sessions/ForgotPassword';
 import ResatePassword from './components/sessions/ResatePassword';
 import Home from './components/home/Home';
+import { getPosts } from './redux/session/postSlice';
 
 const App = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
-  
+  const dispatch = useDispatch();
   useEffect(() => {
-    const authToken = localStorage.getItem('authToken');
     const currUser = JSON.parse(localStorage.getItem('currentUser'));
-
-    setIsAuthenticated(!!authToken);
+    dispatch(getPosts());
     setCurrentUser(currUser);
-  }, []);
+  }, [dispatch]);
 
   return (
     <BrowserRouter>
       <NavBar setCurrentUser={setCurrentUser} currentUser={currentUser} />
       <Routes>
-        <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResatePassword />} />
-        {isAuthenticated && (
-          <>
-            <Route path="/" element={<DashboardPage  />} />
-            <Route path="/create-post" element={<CreatePost />} />
-            <Route path="/delete/:id" element={<DeletePost />} />
-            <Route path="/likes/:id" element={<Likes />} />
-            <Route path="/posts/:id" element={<SinglePost />} />
-            <Route path="/comment/:id" element={<CreateComment />} />
-          </>
-        )}
+        <Route path="/" element={<DashboardPage  />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/create-post" element={<CreatePost />} />
+        <Route path="/delete/:id" element={<DeletePost />} />
+        <Route path="/likes/:id" element={<Likes />} />
+        <Route path="/posts/:id" element={<SinglePost />} />
+        <Route path="/comment/:id" element={<CreateComment />} />
       </Routes>
     </BrowserRouter>
   );

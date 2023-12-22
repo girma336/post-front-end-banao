@@ -1,9 +1,11 @@
 // authSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+const user = JSON.parse(localStorage.getItem('currentUser'))
 
 const BASE_URL = 'https://post-api-ihon.onrender.com/api/v1/users';
 const initialState = {
+  user: user ? user : null,
   token: null,
   error: null,
   loading: false,
@@ -84,6 +86,7 @@ const authSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.loading = false;
         state.token = action.payload.token;
+        state.user = action.payload.user;
         state.successMessage = 'User Login successful!';
         state.error = null;
       })
