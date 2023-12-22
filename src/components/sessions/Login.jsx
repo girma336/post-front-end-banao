@@ -39,10 +39,9 @@ const Login = ({currentUser, setCurrentUser}) => {
       setPassword('');
       
       setTimeout(() => {
-        navigate('/dashboard'); 
-        navigate('/dashboard');
         const curser = JSON.parse(localStorage.getItem('currentUser'));
         setCurrentUser(curser)
+        navigate('/'); 
       }, 3000);
       
     }
@@ -59,7 +58,7 @@ const Login = ({currentUser, setCurrentUser}) => {
     const handleClick = (e) => {
       e.preventDefault();
       setModal(!modal);
-      navigate('/');
+      navigate('/home');
     };
 
     

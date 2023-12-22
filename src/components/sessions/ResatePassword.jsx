@@ -30,7 +30,7 @@ const ResatePassword = () => {
       if (successMessage) {
         toast.success(successMessage);
         setPassword('')
-        // localStorage.removeItem('resetToken');
+        localStorage.removeItem('resetToken');
         // navigate('/login')
       }
       if (error) {

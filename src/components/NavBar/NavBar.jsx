@@ -8,10 +8,8 @@ import { RiRectangleFill } from "react-icons/ri";
 import { authenticated } from '../../utils/userSignin';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.css';;
 
-// const currUser = JSON.parse(localStorage.getItem('currentUser'));
-const token = localStorage.getItem('authToken');
 const NavBar = ({setCurrentUser, currentUser}) => {
   const [toggle, setToggle] = useState(false);
   const navigate = useNavigate()
@@ -27,6 +25,7 @@ const NavBar = ({setCurrentUser, currentUser}) => {
 
   const handleSessionLogin = () => {
     navigate('/login')
+    setToggle(!toggle);
   }
 
   const handleSessionSignout = () => {
@@ -37,8 +36,7 @@ const NavBar = ({setCurrentUser, currentUser}) => {
     setToggle(false)
     toast.success('Signout Successfly')
     setTimeout(() => {
-      navigate('/');
-      navigate('/'); // Redirect to the '/dashboard' after 3000 milliseconds (3 seconds)
+      navigate('/home');
     }, 3000);
     
   }
@@ -60,7 +58,7 @@ const NavBar = ({setCurrentUser, currentUser}) => {
         </div>
         <div>
           <p className="create-account">
-          {currentUser && token ? (
+          {isAuthenticate && currentUser ? (
               <span className="create-account-span">{currentUser.email}</span>
             ) : (
               <>

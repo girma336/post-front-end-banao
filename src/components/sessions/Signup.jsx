@@ -58,7 +58,7 @@ const Signup = () => {
     const handleClick = (e) => {
       e.preventDefault();
       setModal(!modal);
-      navigate('/');
+      navigate('/home');
     };
   return (
     <div className='sign-up'>
