@@ -23,7 +23,8 @@ const DashboardPage = () => {
 
   return (
     <>
-      {!!authToken && (<div className="container">
+      {!!authToken && (
+      <div className="container">
         <h1 className="post-header">Post lists</h1>
         <div className="grid-posts">
           <div className="grid-left">
@@ -38,7 +39,8 @@ const DashboardPage = () => {
             <div style={{ textAlign: 'center' }}>{loading && <div>Loading......</div>}</div>
           </div>
         </div>
-      </div>)}
+      </div>
+      )}
     </>
 
   );

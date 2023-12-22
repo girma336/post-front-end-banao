@@ -16,10 +16,14 @@ import ResatePassword from './components/sessions/ResatePassword';
 import Home from './components/home/Home';
 
 const App = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   
   useEffect(() => {
+    const authToken = localStorage.getItem('authToken');
     const currUser = JSON.parse(localStorage.getItem('currentUser'));
+
+    setIsAuthenticated(!!authToken);
     setCurrentUser(currUser);
   }, []);
 
@@ -32,12 +36,16 @@ const App = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResatePassword />} />
-        <Route path="/" element={<DashboardPage  />} />
-        <Route path="/create-post" element={<CreatePost />} />
-        <Route path="/delete/:id" element={<DeletePost />} />
-        <Route path="/likes/:id" element={<Likes />} />
-        <Route path="/posts/:id" element={<SinglePost />} />
-        <Route path="/comment/:id" element={<CreateComment />} />
+        {isAuthenticated && (
+          <>
+            <Route path="/" element={<DashboardPage  />} />
+            <Route path="/create-post" element={<CreatePost />} />
+            <Route path="/delete/:id" element={<DeletePost />} />
+            <Route path="/likes/:id" element={<Likes />} />
+            <Route path="/posts/:id" element={<SinglePost />} />
+            <Route path="/comment/:id" element={<CreateComment />} />
+          </>
+        )}
       </Routes>
     </BrowserRouter>
   );
